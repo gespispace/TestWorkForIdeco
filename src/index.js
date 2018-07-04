@@ -1,16 +1,61 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import timetableFlight from './reducers/reducers.js';
+import App from './components/App';
 
-import './styles.css';
+import {
+  addFlight,
+  editFlight,
+  setStatusFlight,
+  setVisibilityFilter,
+  setAmount
+} from './actions/actions.js';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hellot CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
+let store = createStore(timetableFlight);
 
-const rootEl2ement = document.getElementById('root');
-ReactDOM.render(<App />, rootEl2ement);
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
+console.log(store.getState());
+
+let unsubscribe = store.subscribe(() => console.log(store.getState()));
+
+store.dispatch(
+  addFlight({
+    id: 12,
+    cityStart: 'Yeakaterinbyrg',
+    cityEnd: 'Moscow',
+    typeAirCraft: 'Boing 55',
+    planTimeFly: 1530634698680,
+    realTimeFly: 1530634998680,
+    status: 'fly'
+  })
+);
+
+store.dispatch(
+  addFlight({
+    id: 14,
+    cityStart: 'Yeakaterinbyrg',
+    cityEnd: 'Moscow',
+    typeAirCraft: 'Boing 55',
+    planTimeFly: 1530634698680,
+    realTimeFly: 1530634998680,
+    status: 'fly'
+  })
+);
+store.dispatch(
+  editFlight({
+    id: 14,
+    cityStart: 'gg',
+    cityEnd: 'Moscow',
+    typeAirCraft: 'Boing 55',
+    status: 'fly'
+  })
+);
+store.dispatch(setStatusFlight(14, 'crash'));
