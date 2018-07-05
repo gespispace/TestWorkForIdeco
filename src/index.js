@@ -49,13 +49,5 @@ store.dispatch(
     status: 'fly'
   })
 );
-store.dispatch(
-  editFlight({
-    id: 14,
-    cityStart: 'gg',
-    cityEnd: 'Moscow',
-    typeAirCraft: 'Boing 55',
-    status: 'fly'
-  })
-);
+
 store.dispatch(setStatusFlight(14, 'crash'));

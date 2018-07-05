@@ -6,6 +6,8 @@ const getVisibleFlights = (flights, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
       return flights;
+    case 'SHOW_COMPLETED':
+      return Object.values(flights).filter(v => v.status === 'fly');
     default:
       return flights;
   }
