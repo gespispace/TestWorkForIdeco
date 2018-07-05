@@ -5,6 +5,7 @@ import {
   SET_STATUS_FLIGHT,
   SET_VISIBILITY_FILTER,
   SET_AMOUNT,
+  SET_SEARCH_INPUT,
   VisibilityFilters
 } from '../actions/actions';
 
@@ -14,6 +15,14 @@ function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter;
+    default:
+      return state;
+  }
+}
+function searchInput(state = '', action) {
+  switch (action.type) {
+    case SET_SEARCH_INPUT:
+      return action.text;
     default:
       return state;
   }
@@ -57,7 +66,8 @@ function flights(state = {}, action) {
 const timetableFlight = combineReducers({
   visibilityFilter,
   flights,
-  amount
+  amount,
+  searchInput
 });
 
 export default timetableFlight;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtomFilter from '../containers/FilterTable';
+import ButtomFilter from '../containers/ButtomFilter';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -22,7 +22,9 @@ const DrawerV = props => (
     <div className={props.classes.toolbar} />
     <List component="nav">
       <ButtomFilter filter="SHOW_ALL" value="All" />
-      <ButtomFilter filter="SHOW_COMPLETED" value="fly" />
+      <ButtomFilter filter="SHOW_PLANNED" value="Planned" />
+      <ButtomFilter filter="SHOW_FLY" value="Fly" />
+      <ButtomFilter filter="SHOW_ARRAIVED" value="Arraived" />
     </List>
   </Drawer>
 );

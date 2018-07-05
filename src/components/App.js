@@ -1,6 +1,6 @@
 import React from 'react';
 import VisibleFlightList from '../containers/VisibleFlightList';
-import AppBarV from './AppBarV';
+import AppBarV from '../containers/AppBarV';
 import DrawerV from './DrawerV';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -18,7 +18,8 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    minWidth: 0 // So the Typography noWrap works
+    minWidth: 0,
+    overflowX: 'auto'
   },
   toolbar: theme.mixins.toolbar
 });
