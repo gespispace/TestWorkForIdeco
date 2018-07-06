@@ -6,6 +6,7 @@ import {
   SET_VISIBILITY_FILTER,
   SET_AMOUNT,
   SET_SEARCH_INPUT,
+  DELETE_FLIGHT,
   VisibilityFilters
 } from '../actions/actions';
 
@@ -27,20 +28,14 @@ function searchInput(state = '', action) {
       return state;
   }
 }
-function amount(state = 0, action) {
-  switch (action.type) {
-    case SET_AMOUNT:
-      return state + action;
-    default:
-      return state;
-  }
-}
+
 function flights(state = {}, action) {
   switch (action.type) {
     case ADD_FLIGHT:
+      action.obj.id = Object.keys(state).length + 1;
       return {
         ...state,
-        [action.obj.id]: action.obj
+        [Object.keys(state).length + 1]: action.obj
       };
     case EDIT_FLIGHT:
       return {
@@ -58,6 +53,10 @@ function flights(state = {}, action) {
           status: action.status
         }
       };
+    case DELETE_FLIGHT:
+      const deleteObj = { ...state };
+      delete deleteObj[action.id];
+      return deleteObj;
     default:
       return state;
   }
@@ -66,7 +65,6 @@ function flights(state = {}, action) {
 const timetableFlight = combineReducers({
   visibilityFilter,
   flights,
-  amount,
   searchInput
 });
 

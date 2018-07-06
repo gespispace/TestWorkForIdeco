@@ -50,11 +50,7 @@ class AppBarV extends React.Component {
           <IconButton onClick={this.handleClickOpen} color="inherit">
             <Add />
           </IconButton>
-          <DialogFlight
-            open={this.state.open}
-            handleClose={this.handleClose}
-            handleChange={this.handleChange}
-          />
+          <DialogFlight open={this.state.open} handleClose={this.handleClose} />
         </Toolbar>
       </AppBar>
     );

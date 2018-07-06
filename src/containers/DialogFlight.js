@@ -1,12 +1,11 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { addFlight } from '../actions/actions';
+import { addFlight, editFlight } from '../actions/actions';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,9 +13,9 @@ import Button from '@material-ui/core/Button';
 class DialogFlightC extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(props.obj);
     this.state = {
-      obj: {}
+      obj: props.obj
     };
   }
 
@@ -30,7 +29,11 @@ class DialogFlightC extends React.Component {
 
   handleCreator = () => {
     console.log(this.state.obj);
-    this.props.onCreator(this.state.obj);
+    if (this.props.edit) {
+      this.props.onEdit(this.state.obj);
+    } else {
+      this.props.onCreator(this.state.obj);
+    }
     this.props.handleClose();
   };
 
@@ -49,6 +52,7 @@ class DialogFlightC extends React.Component {
         <DialogTitle id="form-dialog-title">Creator Flight</DialogTitle>
         <DialogContent>
           <TextField
+            value={this.state.obj ? this.state.obj.id : ''}
             autoFocus
             margin="dense"
             name="id"
@@ -58,6 +62,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.cityStart : ''}
             autoFocus
             margin="dense"
             name="cityStart"
@@ -67,6 +72,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.cityEnd : ''}
             autoFocus
             margin="dense"
             name="cityEnd"
@@ -76,6 +82,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.typeAirCraft : ''}
             autoFocus
             margin="dense"
             name="typeAirCraft"
@@ -85,6 +92,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.planTimeFly : ''}
             autoFocus
             margin="dense"
             name="planTimeFly"
@@ -94,6 +102,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.realTimeFly : ''}
             autoFocus
             margin="dense"
             name="realTimeFly"
@@ -103,6 +112,7 @@ class DialogFlightC extends React.Component {
             onChange={this.handleChange}
           />
           <TextField
+            value={this.state.obj ? this.state.obj.status : ''}
             autoFocus
             margin="dense"
             name="status"
@@ -117,7 +127,7 @@ class DialogFlightC extends React.Component {
             Cancel
           </Button>
           <Button onClick={this.handleCreator} color="primary">
-            Creator
+            {this.props.edit ? 'Edit' : 'Creator'}
           </Button>
         </DialogActions>
       </Dialog>
@@ -127,7 +137,7 @@ class DialogFlightC extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    value: ownProps.value
+    obj: ownProps.edit ? state.flights[ownProps.id] : {}
   };
 };
 
@@ -135,6 +145,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onCreator: e => {
       dispatch(addFlight(e));
+    },
+    onEdit: e => {
+      dispatch(editFlight(e));
     }
   };
 };

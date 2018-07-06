@@ -49,5 +49,3 @@ store.dispatch(
     status: 'fly'
   })
 );
-
-store.dispatch(setStatusFlight(14, 'crash'));

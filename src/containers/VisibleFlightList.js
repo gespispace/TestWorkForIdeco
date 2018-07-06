@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setAmount } from '../actions/actions';
+import { deleteFlight } from '../actions/actions';
 import FlightList from '../components/FlightList';
 
 const getVisibleFlights = (flights, filter) => {
@@ -36,8 +36,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFlightsClick: id => {
-      dispatch(setAmount(id));
+    onDeleteFlight: id => {
+      dispatch(deleteFlight(id));
     }
   };
 };

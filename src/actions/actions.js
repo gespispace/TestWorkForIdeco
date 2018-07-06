@@ -19,6 +19,7 @@ export function addFlight(obj) {
 export function editFlight(obj) {
   return { type: EDIT_FLIGHT, obj };
 }
+
 export function deleteFlight(id) {
   return { type: DELETE_FLIGHT, id };
 }
