@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import SearchInputConnect from './SearchInputConnect';
+import SearchInput from './SearchInput';
 import IconButton from '@material-ui/core/IconButton';
 import Add from '@material-ui/icons/Add';
 
@@ -47,7 +47,7 @@ class AppBarV extends React.Component {
           >
             Flight Table Number of flights: {this.props.number}
           </Typography>
-          <SearchInputConnect />
+          <SearchInput />
           <IconButton onClick={this.handleClickOpen} color="inherit">
             <Add />
           </IconButton>
