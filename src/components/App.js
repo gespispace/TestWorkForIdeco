@@ -3,8 +3,19 @@ import VisibleFlightList from '../containers/VisibleFlightList';
 import AppBarV from '../containers/AppBarV';
 import DrawerV from './DrawerV';
 
-import { withStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  MuiThemeProvider,
+  createMuiTheme
+} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'light'
+  }
+});
 
 const styles = theme => ({
   root: {
@@ -26,13 +37,16 @@ const styles = theme => ({
 
 const App = props => (
   <div className={props.classes.root}>
-    <AppBarV />
-    <DrawerV />
-    <main className={props.classes.content}>
-      <div className={props.classes.toolbar} />
-      <VisibleFlightList />
-    </main>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBarV />
+      <DrawerV />
+      <main className={props.classes.content}>
+        <div className={props.classes.toolbar} />
+        <VisibleFlightList />
+      </main>
+    </MuiThemeProvider>
   </div>
 );
 
-export default withStyles(styles, { withTheme: true })(App);
+export default withStyles(styles)(App);

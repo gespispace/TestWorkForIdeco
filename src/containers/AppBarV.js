@@ -1,5 +1,6 @@
 import React from 'react';
 import DialogFlight from './DialogFlight';
+import { connect } from 'react-redux';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -44,7 +45,7 @@ class AppBarV extends React.Component {
             noWrap
             className={this.props.classes.flex}
           >
-            Flight Table
+            Flight Table Number of flights: {this.props.number}
           </Typography>
           <SearchInputConnect />
           <IconButton onClick={this.handleClickOpen} color="inherit">
@@ -57,4 +58,10 @@ class AppBarV extends React.Component {
   }
 }
 
-export default withStyles(styles)(AppBarV);
+const mapStateToProps = state => {
+  return {
+    number: Object.keys(state.flights).length
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AppBarV));

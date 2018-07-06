@@ -4,6 +4,7 @@ import FlightHead from './FlightHead';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({

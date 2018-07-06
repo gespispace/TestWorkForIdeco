@@ -52,10 +52,10 @@ class DialogFlightC extends React.Component {
         <DialogTitle id="form-dialog-title">Creator Flight</DialogTitle>
         <DialogContent>
           <TextField
-            value={this.state.obj ? this.state.obj.id : ''}
+            value={this.state.obj ? this.state.obj.Number : ''}
             autoFocus
             margin="dense"
-            name="id"
+            name="Number"
             id="name"
             label="Number"
             fullWidth
